@@ -9,10 +9,9 @@ def puzzle(data):
     puzzle_a_count = 0
     puzzle_b_count = 0
     for i in data:
-        count_min = int(i.split()[0].split("-")[0])
-        count_max = int(i.split()[0].split("-")[1])
-        char = i.split()[1].strip(":")
-        password = i.split()[2]
+        count, char, password = i.split()
+        count_min, count_max = [int(x) for x in count.split("-")]
+        char = char.strip(":")
         if count_min <= password.count(char) <= count_max:
             puzzle_a_count += 1
         if (password[count_min - 1] == char) ^ (password[count_max - 1] == char):
